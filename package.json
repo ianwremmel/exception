@@ -16,7 +16,9 @@
     "lint:staged": "lint-staged",
     "mocha-reporter-options": "[ -n \"${CI}\" ] && echo '--reporter xunit --reporter-options output=reports/junit/test.xml'",
     "precommit": "npm run --silent lint:staged",
-    "test": "mocha $(npm run --silent mocha-reporter-options) './src/**/*-spec.js'"
+    "test": "npm run --silent test:node && npm run --silent test:browsers",
+    "test:node": "mocha $(npm run --silent mocha-reporter-options) './src/**/*-spec.js'",
+    "test:browser": "karma start"
   },
   "engines": {
     "node": ">=6"
@@ -35,8 +37,18 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-mocha": "^4.11.0",
     "husky": "^0.14.3",
+    "karma": "^1.7.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-firefox-launcher": "^1.0.1",
+    "karma-junit-reporter": "^1.2.0",
+    "karma-mocha": "^1.3.0",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-sauce-launcher": "^1.2.0",
+    "karma-webpack": "^2.0.5",
     "lint-staged": "^4.3.0",
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "webpack": "^3.8.1"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
