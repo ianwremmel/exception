@@ -1,8 +1,12 @@
 {
   "name": "@ianwremmel/exception",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "Base-class for browser and nodejs Exceptions",
   "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ianwremmel/exception.git"
+  },
   "scripts": {
     "commitmsg": "npm run --silent lint:commitmsg",
     "lint": "npm run --silent lint:js && npm run --silent lint:changelog && npm run --silent lint:deps",
@@ -16,7 +20,8 @@
     "lint:staged": "lint-staged",
     "mocha-reporter-options": "[ -n \"${CI}\" ] && echo '--reporter xunit --reporter-options output=reports/junit/test.xml'",
     "precommit": "npm run --silent lint:staged",
-    "test": "mocha $(npm run --silent mocha-reporter-options) './src/**/*-spec.js'"
+    "test": "mocha $(npm run --silent mocha-reporter-options) './src/**/*-spec.js'",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "engines": {
     "node": ">=6"
@@ -24,6 +29,7 @@
   "keywords": [],
   "author": "Ian W. Remmel <design@ianwremmel.com>",
   "license": "MIT",
+  "dependencies": {},
   "devDependencies": {
     "@ianwremmel/eslint-config-base": "^1.0.0",
     "@ianwremmel/eslint-config-standard": "^1.0.0",
@@ -36,10 +42,13 @@
     "eslint-plugin-mocha": "^4.11.0",
     "husky": "^0.14.3",
     "lint-staged": "^4.3.0",
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "semantic-release": "^8.2.0"
   },
   "lint-staged": {
     "*.js": "lint:eslint"
   },
-  "dependencies": {}
+  "release": {
+    "verifyConditions": "condition-circle"
+  }
 }
