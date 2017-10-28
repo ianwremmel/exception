@@ -13,7 +13,7 @@ steps: &steps
   - checkout
   - restore_cache: *restore_cache
   - run: npm install
-  - run: npm test
+  - run: npm run test:node
   - save_cache: *save_cache
   - store_test_results:
       path: reports
@@ -40,6 +40,17 @@ jobs:
       - image: node:8
     steps: *steps
 
+  test-browsers:
+    docker:
+      - image: node:8
+    - checkout
+    - restore_cache: *restore_cache
+    - run: npm install
+    - run: npm run test:browser
+    - save_cache: *save_cache
+    - store_test_results:
+        path: reports
+
   release:
     docker:
       - image: node:8
@@ -62,4 +73,5 @@ workflows:
           requires:
             - test-node-6
             - test-node-8
+            - test-browsers
             - lint
