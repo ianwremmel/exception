@@ -18,6 +18,9 @@
     "precommit": "npm run --silent lint:staged",
     "test": "mocha $(npm run --silent mocha-reporter-options) './src/**/*-spec.js'"
   },
+  "engines": {
+    "node": ">=6"
+  },
   "keywords": [],
   "author": "Ian W. Remmel <design@ianwremmel.com>",
   "license": "MIT",
