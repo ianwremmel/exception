@@ -8,6 +8,14 @@ const {assert} = require(`chai`);
 const Exception = require(`.`);
 
 describe(`Exception`, () => {
+  it(`subclasses Error`, () => {
+    assert.instanceOf(new Exception(), Error);
+  });
+
+  it(`has a stacktrace`, () => {
+    assert.property(new Exception(), `stack`);
+  });
+
   it(`stringifies as "Exception" and not "Error"`, () => {
     const e = new Exception();
     assert.match(e, /Exception/);
@@ -26,5 +34,4 @@ describe(`Exception`, () => {
     const e2 = new MyException(`Something worse happened`);
     assert.match(e2, /MyException: Something worse happened/);
   });
-})
-;
+});
