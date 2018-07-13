@@ -11,7 +11,7 @@ declare class Exception extends Error {
    * Constructor
    * @param {string} [message] - Human-readable description of the error.
    */
-  constructor(message?)
+  constructor(message?: string)
 }
 
 export = Exception
