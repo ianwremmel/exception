@@ -10,7 +10,7 @@
   "scripts": {
     "commitmsg": "npm run --silent lint:commitmsg",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "lint": "npm run --silent lint:js && npm run --silent lint:changelog && npm run --silent lint:deps",
+    "lint": "npm-run-all lint:js lint:types lint:changelog lint:deps",
     "lint:changelog": "conventional-changelog-lint --from origin/master --to HEAD",
     "lint:commitmsg": "conventional-changelog-lint -e",
     "lint:eslint": "eslint --ignore --ignore-path .gitignore",
@@ -19,6 +19,7 @@
     "lint:deps:missing": "dependency-check package.json",
     "lint:deps:unused": "dependency-check package.json --unused --no-dev",
     "lint:staged": "lint-staged",
+    "lint:types": "tsc",
     "mocha-reporter-options": "[ -n \"${CI}\" ] && echo '--reporter xunit --reporter-options output=reports/junit/test.xml'",
     "precommit": "npm run --silent lint:staged",
     "test": "nyc --reporter=text mocha $(npm run --silent mocha-reporter-options) './src/**/*-spec.js'",
@@ -34,23 +35,26 @@
   "devDependencies": {
     "@ianwremmel/eslint-config-base": "^1.0.0",
     "@ianwremmel/eslint-config-standard": "^1.0.0",
+    "@types/mocha": "^5.2.4",
     "chai": "^4.1.2",
     "condition-circle": "^2.0.0",
     "conventional-changelog": "^2.0.1",
     "conventional-changelog-lint": "^2.1.1",
-    "coveralls": "^3.0.0",
+    "coveralls": "^3.0.2",
     "dependency-check": "^3.0.0",
-    "eslint": "^4.10.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-mocha": "^4.11.0",
+    "eslint": "^5.1.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-mocha": "^5.1.0",
     "husky": "^0.14.3",
-    "lint-staged": "^7.0.0",
-    "mocha": "^5.0.0",
+    "lint-staged": "^7.2.0",
+    "mocha": "^5.2.0",
+    "npm-run-all": "^4.1.3",
     "nyc": "^12.0.2",
-    "semantic-release": "^11.0.2"
+    "semantic-release": "^15.7.1",
+    "typescript": "^2.9.2"
   },
   "lint-staged": {
-    "*.js": "lint:eslint"
+    "*.js": "npm run lint:eslint --"
   },
   "release": {
     "verifyConditions": "condition-circle"

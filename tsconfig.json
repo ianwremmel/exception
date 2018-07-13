@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "lib": ["esnext"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "target": "es2016"
+  },
+  "include": [
+    "./src/**/*",
+    "./test/**/*"
+  ]
+}

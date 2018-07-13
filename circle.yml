@@ -2,7 +2,6 @@ restore_cache: &restore_cache
   keys:
     - node-modules-{{ arch }}-{{ .Environment.CIRCLE_JOB }}-{{ .Branch }}-{{ checksum "package.json" }}
     - node-modules-{{ arch }}-{{ .Environment.CIRCLE_JOB }}-{{ checksum "package.json" }}
-    - node-modules-{{ arch }}-{{ .Environment.CIRCLE_JOB }}
 
 save_cache: &save_cache
   key: node-modules-{{ arch }}-{{ .Environment.CIRCLE_JOB }}-{{ .Branch }}-{{ checksum "package.json" }}
@@ -23,7 +22,7 @@ version: 2
 jobs:
   lint:
     docker:
-      - image: node:8
+      - image: node:10
     steps:
       - checkout
       - restore_cache: *restore_cache
@@ -39,6 +38,11 @@ jobs:
   test-node-8:
     docker:
       - image: node:8
+    steps: *steps
+
+  test-node-10:
+    docker:
+      - image: node:10
     steps: *steps
 
   release:
@@ -61,6 +65,7 @@ workflows:
     jobs:
       - test-node-6
       - test-node-8
+      - test-node-10
       # Reminder: we don't want to block tests on lint, otherwise #no-push
       # prevents tests from running
       - lint
@@ -71,4 +76,5 @@ workflows:
           requires:
             - test-node-6
             - test-node-8
+            - test-node-10
             - lint
