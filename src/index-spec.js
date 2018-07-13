@@ -5,7 +5,7 @@ const {assert} = require('chai');
 /* eslint-env mocha */
 /* eslint-disable require-jsdoc */
 
-const Exception = require('.');
+const {Exception} = require('.');
 
 describe('Exception', () => {
   it('subclasses Error', () => {
@@ -18,20 +18,20 @@ describe('Exception', () => {
 
   it('stringifies as "Exception" and not "Error"', () => {
     const e = new Exception();
-    assert.match(e, /Exception/);
+    assert.match(e.toString(), /Exception/);
   });
 
   it('stringifies with its message', () => {
     const e = new Exception('Something bad happened');
-    assert.match(e, /Exception: Something bad happened/);
+    assert.match(e.toString(), /Exception: Something bad happened/);
   });
 
   it('stringifies according to its derived class name', () => {
     class MyException extends Exception {}
     const e = new MyException();
-    assert.match(e, /MyException/);
+    assert.match(e.toString(), /MyException/);
 
     const e2 = new MyException('Something worse happened');
-    assert.match(e2, /MyException: Something worse happened/);
+    assert.match(e2.toString(), /MyException: Something worse happened/);
   });
 });

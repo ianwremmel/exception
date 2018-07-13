@@ -6,12 +6,10 @@
  * @class Exception
  * @extends {Error}
  */
-declare class Exception extends Error {
+export class Exception extends Error {
   /**
    * Constructor
    * @param {string} [message] - Human-readable description of the error.
    */
   constructor(message?: string)
 }
-
-export = Exception
