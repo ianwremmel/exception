@@ -34,4 +34,13 @@ describe('Exception', () => {
     const e2 = new MyException('Something worse happened');
     assert.match(e2.toString(), /MyException: Something worse happened/);
   });
+
+  it('captures and forwards Errors', () => {
+    const e = new Error('foo');
+
+    const ex = new Exception(e);
+
+    assert.match(ex.toString(), /Exception: Wrapped Exception: foo/);
+    assert.equal(ex.stack, e.stack);
+  });
 });
