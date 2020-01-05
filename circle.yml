@@ -47,7 +47,7 @@ jobs:
 
   release:
     docker:
-      - image: node:8
+      - image: node:12
     steps:
       - checkout
       - restore_cache: *restore_cache
