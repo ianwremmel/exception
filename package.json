@@ -23,7 +23,7 @@
     "semantic-release": "semantic-release"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=10"
   },
   "keywords": [],
   "author": "Ian W. Remmel <design@ianwremmel.com>",
