@@ -31,7 +31,7 @@
     "@ianwremmel/eslint-config-base": "^1.0.0",
     "@ianwremmel/eslint-config-standard": "^1.0.0",
     "@types/chai": "^4.1.4",
-    "@types/mocha": "^5.2.4",
+    "@types/mocha": "^7.0.0",
     "chai": "^4.1.2",
     "condition-circle": "^2.0.0",
     "conventional-changelog": "^3.0.4",
