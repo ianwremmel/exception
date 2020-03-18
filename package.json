@@ -52,7 +52,10 @@
     "*.js": "npm run lint:eslint --"
   },
   "release": {
-    "verifyConditions": "condition-circle"
+    "branches": [
+      "master"
+    ],
+    "ci": true
   },
   "husky": {
     "hooks": {
