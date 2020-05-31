@@ -44,3 +44,4 @@ describe('Exception', () => {
     assert.equal(ex.stack, e.stack);
   });
 });
+/* eslint-enable require-jsdoc */

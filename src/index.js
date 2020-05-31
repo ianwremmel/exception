@@ -36,8 +36,7 @@ class Exception extends Error {
       super(`Wrapped Exception: ${message.message}`);
       this.original = message;
       this.stack = this.original.stack;
-    }
-    else {
+    } else {
       super(message);
     }
     this.name = this.constructor.name;
