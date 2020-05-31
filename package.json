@@ -10,15 +10,14 @@
   "scripts": {
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "npm-run-all lint:js lint:types lint:changelog",
-    "lint:changelog": "conventional-changelog-lint --from origin/master --to HEAD",
-    "lint:commitmsg": "conventional-changelog-lint -e",
     "lint:eslint": "eslint --ignore --ignore-path .gitignore",
     "lint:js": "npm run --silent lint:eslint -- .",
     "lint:staged": "lint-staged",
     "lint:types": "tsc",
     "mocha-reporter-options": "[ -n \"${CI}\" ] && echo '--reporter xunit --reporter-options output=reports/junit/test.xml'",
     "test": "nyc --reporter=text mocha $(npm run --silent mocha-reporter-options) './src/**/*-spec.js'",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "lint:changelog": "commitlint --from origin/master --to HEAD"
   },
   "engines": {
     "node": ">=10"
@@ -28,14 +27,14 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "@ianwremmel/eslint-config-base": "^1.0.0",
     "@ianwremmel/eslint-config-standard": "^1.0.0",
     "@types/chai": "^4.1.4",
     "@types/mocha": "^7.0.0",
     "chai": "^4.1.2",
     "condition-circle": "^2.0.0",
-    "conventional-changelog": "^3.0.4",
-    "conventional-changelog-lint": "^2.1.1",
     "coveralls": "^3.0.2",
     "eslint": "^7.0.0",
     "eslint-plugin-import": "^2.13.0",
@@ -59,8 +58,8 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "npm run --silent lint:commitmsg",
-      "pre-commit": "npm run --silent lint:staged"
+      "pre-commit": "npm run --silent lint:staged",
+      "commit-msg": "commitlint -e"
     }
   }
 }
