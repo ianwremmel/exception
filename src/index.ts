@@ -22,8 +22,7 @@ export class Exception extends Error {
   set original(value: Error | undefined) {
     if (value) {
       originals.set(this, value);
-    }
-    else {
+    } else {
       originals.delete(this);
     }
   }

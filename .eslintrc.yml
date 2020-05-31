@@ -6,3 +6,17 @@ extends:
   - prettier
 parserOptions:
   sourceType: script
+overrides:
+  - files:
+      - '**/*.ts'
+      - '**/*.tsx'
+    extends:
+      - plugin:@typescript-eslint/recommended
+      - prettier/@typescript-eslint
+      - plugin:import/typescript
+    parser: '@typescript-eslint/parser'
+    parserOptions:
+      project: ./tsconfig.json
+      sourceType: module
+    plugins:
+      - '@typescript-eslint'
