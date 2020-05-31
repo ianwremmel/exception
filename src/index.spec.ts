@@ -1,11 +1,9 @@
-'use strict';
-
-const {assert} = require('chai');
+import {assert} from 'chai';
 
 /* eslint-env mocha */
 /* eslint-disable require-jsdoc */
 
-const {Exception} = require('.');
+import {Exception} from '.';
 
 describe('Exception', () => {
   it('subclasses Error', () => {

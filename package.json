@@ -2,7 +2,7 @@
   "name": "@ianwremmel/exception",
   "version": "0.0.0-development",
   "description": "Base-class for browser and nodejs Exceptions",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/ianwremmel/exception.git"
@@ -13,7 +13,7 @@
     "lint:eslint": "eslint --ignore --ignore-path .gitignore",
     "lint:types": "tsc",
     "mocha-reporter-options": "[ -n \"${CI}\" ] && echo '--reporter xunit --reporter-options output=reports/junit/test.xml'",
-    "test": "nyc --reporter=text mocha $(npm run --silent mocha-reporter-options) './src/**/*-spec.js'",
+    "test": "nyc --reporter=text mocha $(npm run --silent mocha-reporter-options) -r ./babel-register.js './src/**/*.spec.ts'",
     "semantic-release": "semantic-release",
     "lint:changelog": "commitlint --from origin/master --to HEAD",
     "lint:es": "npm run --silent lint:eslint -- ."

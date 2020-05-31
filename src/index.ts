@@ -1,6 +1,4 @@
-'use strict';
-
-const originals = new WeakMap();
+const originals = new WeakMap<Exception, Error>();
 
 /**
  * Base class from which to extend Exceptions. Nearly identical in use to
@@ -10,28 +8,32 @@ const originals = new WeakMap();
  * @class Exception
  * @extends {Error}
  */
-class Exception extends Error {
+export class Exception extends Error {
   /**
    * Getter
-   * @returns {Error|undefined}
    */
-  get original() {
+  get original(): Error | undefined {
     return originals.get(this);
   }
 
   /**
    * Setter
-   * @param {Error|undefined} value;
    */
-  set original(value) {
-    originals.set(this, value);
+  set original(value: Error | undefined) {
+    if (value) {
+      originals.set(this, value);
+    }
+    else {
+      originals.delete(this);
+    }
   }
 
   /**
    * Constructor
-   * @param {string|Error} [message] - Human-readable description of the error.
+   * @param message - Human-readable description of the error or error or Error
+   * to rethrow
    */
-  constructor(message) {
+  constructor(message?: string | Error) {
     if (message instanceof Error) {
       super(`Wrapped Exception: ${message.message}`);
       this.original = message;
@@ -42,5 +44,3 @@ class Exception extends Error {
     this.name = this.constructor.name;
   }
 }
-
-exports.Exception = Exception;
