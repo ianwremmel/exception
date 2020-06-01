@@ -2,6 +2,21 @@ env:
   es6: true
   node: true
 extends:
-  - "@ianwremmel/eslint-config-standard"
+  - plugin:@ianwremmel/ianwremmel/modern
+  - prettier
 parserOptions:
-  sourceType: "script"
+  sourceType: script
+overrides:
+  - files:
+      - '**/*.ts'
+      - '**/*.tsx'
+    extends:
+      - plugin:@typescript-eslint/recommended
+      - prettier/@typescript-eslint
+      - plugin:import/typescript
+    parser: '@typescript-eslint/parser'
+    parserOptions:
+      project: ./tsconfig.json
+      sourceType: module
+    plugins:
+      - '@typescript-eslint'
