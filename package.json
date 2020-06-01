@@ -24,6 +24,9 @@
   "engines": {
     "node": ">=12"
   },
+  "files": [
+    "dist/**/*"
+  ],
   "keywords": [],
   "author": "Ian W. Remmel <design@ianwremmel.com>",
   "license": "MIT",
