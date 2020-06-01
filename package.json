@@ -22,7 +22,7 @@
     "build:es": "babel --copy-files --source-maps --ignore '**/*.snap' --ignore '**/*.d.ts' --ignore '**/*.spec.*' --ignore '**.*.test.*' --extensions '.ts,.js,.jsx,.tsx' -d dist src"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "keywords": [],
   "author": "Ian W. Remmel <design@ianwremmel.com>",
