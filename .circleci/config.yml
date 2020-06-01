@@ -60,6 +60,7 @@ jobs:
           command: |
             echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > ./.npmrc
             npm whoami
+            npm run build
             npm run semantic-release
       - post_commands
 
